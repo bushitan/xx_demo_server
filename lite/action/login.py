@@ -23,15 +23,15 @@ class ActionLogin():
 
     def CheckSession(self,str_js_code,str_session):
         if self.q_user.IsExists(session = str_session) is True:  #session存在，返回用户
-            _d_user = self.q_user.GetDict(session = str_session)
+            _d_user = self.q_user.Get(session = str_session)
         else:#session不存在，获取open_id判断
             # _json = WxHttp(_js_code)
             _json = self._GetOpenID(str_js_code)
             _open_id = _json["openid"]
             if self.q_user.IsExists( wx_open_id = _open_id ) is True: #open_id 存在，
-                _d_user = self.q_user.GetDict( wx_open_id = _open_id)
+                _d_user = self.q_user.Get( wx_open_id = _open_id)
             else: #open_id 不存在，增加用户
-                _d_user = self.q_user.Set(
+                _d_user = self.q_user.Add(
                     wx_open_id = _json["openid"],
                     session =  _json["session_key"],
                 )
