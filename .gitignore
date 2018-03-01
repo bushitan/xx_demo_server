@@ -1,7 +1,9 @@
 # Python:
 *.pyc
 *.json
-/static/
-/media/
+/static/*
+!/static/readme.txt
+/media/*
+!/media/readme.txt
 /.idea/
 all.log
